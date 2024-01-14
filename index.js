@@ -20,13 +20,19 @@ app.get("/products", (req, res) =>{
     products.push({
       name: faker.commerce.productName(),
       price: parseInt(faker.commerce.price(), 10),
-      image: faker.image.imageUrl(),
+      image: faker.image.imageurl(),
     })
   }
 
   res.json(products);
 });
 
+//declarar solicitudes estaticas antes de dinamicas
+app.get('/products/filter', (req,res) => {
+  res.send('Yo soy un filter');
+});
+
+//solicitud dinamica
 app.get("/products/:id", (req, res) => {
   const { id }= req.params;
   res.json({
